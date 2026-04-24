@@ -1,30 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
-    <nav>
-      <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
-        Home
-      </NavLink>
-      <NavLink
-        to="/projects"
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        Projects
-      </NavLink>
-      <NavLink
-        to="/about"
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        About
-      </NavLink>
-      <NavLink
-        to="/contact"
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        Contact
-      </NavLink>
-    </nav>
+    <AppBar position="fixed">
+      <Toolbar>
+        <Typography variant="h6">Jhoan Rojas</Typography>
+      </Toolbar>
+    </AppBar>
   );
 };
 
