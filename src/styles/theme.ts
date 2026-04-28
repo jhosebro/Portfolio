@@ -65,10 +65,14 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
+          backgroundColor: "#040507",
           backgroundImage: `
-            radial-gradient(circle at 20% 20%, rgba(0,255,156,0.06), transparent 40%),
-            radial-gradient(circle at 80% 0%, rgba(0,255,156,0.04), transparent 40%)
-          `,
+    radial-gradient(circle at 20% 20%, rgba(0,255,156,0.06), transparent 40%),
+    radial-gradient(circle at 80% 0%, rgba(0,255,156,0.04), transparent 40%)
+  `,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          minHeight: "100vh"
         },
       },
     },

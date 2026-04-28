@@ -61,7 +61,15 @@ const ProjectCard = ({ project }: Props) => {
         {/* 🔹 INFO */}
         <Grid size={{ xs: 12, md: 6 }}>
           <Stack spacing={2}>
-            <Typography variant="h5">{project.name}</Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                textShadow: `0 0 20px ${theme.palette.primary.main}40`,
+                py: 2,
+              }}
+            >
+              {project.name}
+            </Typography>
 
             <Typography variant="body2">{project.description}</Typography>
 
@@ -84,6 +92,7 @@ const ProjectCard = ({ project }: Props) => {
                   sx={{
                     px: 1.5,
                     py: 0.4,
+                    mt: 1,
                     borderRadius: "999px",
                     border: `1px solid ${theme.palette.divider}`,
                     fontSize: 12,

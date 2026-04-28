@@ -14,9 +14,11 @@ const MainLayout = () => {
       }}
     >
       <Navbar />
-      <Box component="main" sx={{ flex: 1 }}>
+
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <Outlet />
       </Box>
+      
       <Footer />
     </Box>
   );

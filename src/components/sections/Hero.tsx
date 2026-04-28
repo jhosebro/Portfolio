@@ -1,6 +1,6 @@
 // components/Hero.tsx
 
-import { Box, Typography, Button, Stack, Grid } from "@mui/material";
+import { Box, Typography, Button, Stack, Grid, Container } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
@@ -13,13 +13,13 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <Box
+    <Container
+      maxWidth="lg"
       sx={{
-        width: "100%",
-        mx: "auto",
-        maxWidth: 1100,
         display: "flex",
         alignItems: "center",
+        flexGrow: 1,
+        py: { xs: 6, md: 10 },
       }}
     >
       <Grid
@@ -27,12 +27,18 @@ const Hero = () => {
         spacing={4}
         sx={{
           alignItems: "center",
-          height: "100%",
+          width: "100%",
+          m: 0,
         }}
       >
         {/* 🔹 IZQUIERDA */}
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Stack spacing={3}>
+        <Grid size={{ xs: 12, md: 6 }} sx={{ order: { xs: 2, md: 1 } }}>
+          <Stack
+            spacing={3}
+            sx={{
+              maxWidth: 520,
+            }}
+          >
             {/* Nombre */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -86,7 +92,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              <Stack direction="row" spacing={2}>
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                 <Button
                   variant="contained"
                   color="primary"
@@ -108,7 +114,10 @@ const Hero = () => {
         </Grid>
 
         {/* 🔹 DERECHA */}
-        <Grid size={{ xs: 12, md: 6}}>
+        <Grid
+          size={{ xs: 12, md: 6 }}
+          sx={{ order: { xs: 1, md: 2 }, display: "flex" }}
+        >
           <Box
             sx={{
               position: "relative",
@@ -117,7 +126,8 @@ const Hero = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              pt: 6
+              overflow: "hidden",
+              pt: 6,
             }}
           >
             {/* Mockup */}
@@ -131,7 +141,7 @@ const Hero = () => {
           </Box>
         </Grid>
       </Grid>
-    </Box>
+    </Container>
   );
 };
 
