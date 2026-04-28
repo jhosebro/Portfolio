@@ -1,10 +1,17 @@
-// components/Footer.tsx
-
 import { Box, Typography, Stack, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
+
+  const links = [
+    { label: "Inicio", path: "/" },
+    { label: "Proyectos", path: "/projects" },
+    { label: "Sobre mí", path: "/about" },
+    { label: "Contacto", path: "/contact" },
+  ];
 
   return (
     <Box
@@ -28,63 +35,28 @@ const Footer = () => {
       >
         {/* 🔹 Links */}
         <Stack direction="row" spacing={3}>
-          <Link
-            sx={{
-              transition: "0.3s",
-              "&:hover": {
-                color: theme.palette.primary.main,
-              },
-            }}
-            href="/"
-            underline="none"
-            color="text.secondary"
-          >
-            Inicio
-          </Link>
-          <Link
-            sx={{
-              transition: "0.3s",
-              "&:hover": {
-                color: theme.palette.primary.main,
-              },
-            }}
-            href="/projects"
-            underline="none"
-            color="text.secondary"
-          >
-            Proyectos
-          </Link>
-          <Link
-            sx={{
-              transition: "0.3s",
-              "&:hover": {
-                color: theme.palette.primary.main,
-              },
-            }}
-            href="/about"
-            underline="none"
-            color="text.secondary"
-          >
-            Sobre mí
-          </Link>
-          <Link
-            sx={{
-              transition: "0.3s",
-              "&:hover": {
-                color: theme.palette.primary.main,
-              },
-            }}
-            href="/contact"
-            underline="none"
-            color="text.secondary"
-          >
-            Contacto
-          </Link>
+          {links.map((link) => (
+            <Link
+              key={link.path}
+              component="button"
+              onClick={() => navigate(link.path)}
+              underline="none"
+              color="text.secondary"
+              sx={{
+                cursor: "pointer",
+                transition: "0.3s",
+                "&:hover": {
+                  color: theme.palette.primary.main,
+                },
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
         </Stack>
 
         <Typography variant="body2" color="text.secondary">
-          © {new Date().getFullYear()} Jhoan Rojas. Todos los derechos
-          reservados.
+          © {new Date().getFullYear()} Jhoan Rojas. Todos los derechos reservados.
         </Typography>
       </Stack>
     </Box>
