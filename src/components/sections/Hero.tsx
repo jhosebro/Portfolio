@@ -18,11 +18,18 @@ const Hero = () => {
         width: "100%",
         mx: "auto",
         maxWidth: 1100,
-        height: "100vh",
         display: "flex",
+        alignItems: "center",
       }}
     >
-      <Grid container spacing={6} sx={{ alignItems: "center" }}>
+      <Grid
+        container
+        spacing={4}
+        sx={{
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
         {/* 🔹 IZQUIERDA */}
         <Grid size={{ xs: 12, md: 6 }}>
           <Stack spacing={3}>
@@ -53,7 +60,7 @@ const Hero = () => {
                   color: theme.palette.secondary.main,
                 }}
               >
-                Frontend Developer • React Ecosystem
+                Software & Mobile Developer
               </Typography>
             </motion.div>
 
@@ -101,7 +108,7 @@ const Hero = () => {
         </Grid>
 
         {/* 🔹 DERECHA */}
-        <Grid size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, md: 6}}>
           <Box
             sx={{
               position: "relative",
@@ -110,6 +117,7 @@ const Hero = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              pt: 6
             }}
           >
             {/* Mockup */}

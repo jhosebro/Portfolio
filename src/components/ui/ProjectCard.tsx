@@ -1,5 +1,3 @@
-// components/ProjectCard.tsx
-
 import { Box, Typography, Stack, Button, Grid, Card } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
@@ -20,13 +18,20 @@ const ProjectCard = ({ project }: Props) => {
 
   return (
     <Card
-      sx={{
+      sx={(theme) => ({
         p: { xs: 2, md: 4 },
         borderRadius: 4,
-      }}
+        transition: "all 0.3s ease",
+        cursor: "pointer",
+
+        "&:hover": {
+          transform: "translateY(-6px)",
+          boxShadow: `0 10px 40px ${theme.palette.primary.main}25`,
+          borderColor: theme.palette.primary.main,
+        },
+      })}
     >
       <Grid container sx={{ spacing: 4, alignItems: "center" }}>
-        {/* 🔹 MOCKUP */}
         <Grid size={{ xs: 12, md: 6 }}>
           <Box
             sx={{
@@ -43,6 +48,11 @@ const ProjectCard = ({ project }: Props) => {
                 maxWidth: 220,
                 borderRadius: 3,
                 boxShadow: `0 0 30px ${theme.palette.primary.main}30`,
+                transition: "transform 0.4s ease",
+
+                ".MuiCard-root:hover &": {
+                  transform: "scale(1.05)",
+                },
               }}
             />
           </Box>
@@ -53,9 +63,7 @@ const ProjectCard = ({ project }: Props) => {
           <Stack spacing={2}>
             <Typography variant="h5">{project.name}</Typography>
 
-            <Typography variant="body2">
-              {project.description}
-            </Typography>
+            <Typography variant="body2">{project.description}</Typography>
 
             {/* Impacto */}
             <Typography
