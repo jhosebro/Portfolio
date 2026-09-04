@@ -1,5 +1,12 @@
-import { Container as MuiContainer } from "@mui/material";
+import { Container as MuiContainer, type ContainerProps } from "@mui/material";
+import type { ReactNode } from "react";
 
-export const Container = ({ children }: any) => {
-  return <MuiContainer maxWidth="lg">{children}</MuiContainer>;
+type Props = ContainerProps & { children: ReactNode };
+
+export const Container = ({ children, ...props }: Props) => {
+  return (
+    <MuiContainer maxWidth="lg" {...props}>
+      {children}
+    </MuiContainer>
+  );
 };

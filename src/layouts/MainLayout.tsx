@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import LanguageSwitcher from "../components/ui/LanguageSwitcher";
 
 import { Box } from "@mui/material";
 
@@ -18,8 +19,10 @@ const MainLayout = () => {
       <Box component="main" sx={{ flexGrow: 1 }}>
         <Outlet />
       </Box>
-      
+
       <Footer />
+
+      <LanguageSwitcher />
     </Box>
   );
 };

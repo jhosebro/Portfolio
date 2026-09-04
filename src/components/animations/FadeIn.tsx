@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
-export const FadeIn = ({ children }: any) => {
+export const FadeIn = ({ children }: { children: ReactNode }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

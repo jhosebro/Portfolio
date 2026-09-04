@@ -1,6 +1,9 @@
-import { Button as MuiButton } from "@mui/material";
+import { Button as MuiButton, type ButtonProps } from "@mui/material";
+import type { ReactNode } from "react";
 
-export const Button = ({ children, ...props }: any) => {
+type Props = ButtonProps & { children: ReactNode };
+
+export const Button = ({ children, ...props }: Props) => {
   return (
     <MuiButton variant="contained" {...props}>
       {children}

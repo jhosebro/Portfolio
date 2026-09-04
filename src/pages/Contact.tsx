@@ -8,12 +8,13 @@ import {
   Alert,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { useTheme } from "@mui/material/styles";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
+import SectionHeading from "../components/ui/SectionHeading";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Contact = () => {
-  const theme = useTheme();
+  const { t } = useLanguage();
 
   const [form, setForm] = useState({
     name: "",
@@ -55,7 +56,7 @@ const Contact = () => {
         () => {
           setSnackbar({
             open: true,
-            message: "Mensaje enviado correctamente",
+            message: t.contact.success,
             severity: "success",
           });
           setForm({ name: "", email: "", message: "" });
@@ -65,7 +66,7 @@ const Contact = () => {
           console.error(error);
           setSnackbar({
             open: true,
-            message: "Error al enviar el mensaje",
+            message: t.contact.error,
             severity: "error",
           });
           setLoading(false);
@@ -77,87 +78,77 @@ const Contact = () => {
     <Box
       sx={{
         px: { xs: 2, md: 8 },
-        py: 8,
+        py: { xs: 6, md: 8 },
         maxWidth: 600,
         mx: "auto",
       }}
     >
       <Stack spacing={4}>
-        {/* Header */}
         <Box>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-          >
-            <Typography
-              variant="h4"
-              sx={{
-                textShadow: `0 0 20px ${theme.palette.primary.main}40`,
-              }}
-            >
-              Contacto
-            </Typography>
-          </motion.div>
-
-          <Typography variant="body1">
-            ¿Tienes un proyecto o una oportunidad? Estoy disponible para
-            colaborar.
-          </Typography>
+          <SectionHeading
+            title={t.contact.title}
+            subtitle={t.contact.subtitle}
+          />
         </Box>
 
-        {/* Formulario */}
-        <Box component="form" onSubmit={handleSubmit}>
-          <Stack spacing={2}>
-            <TextField
-              label="Nombre"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              fullWidth
-              required
-            />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <Box component="form" onSubmit={handleSubmit}>
+            <Stack spacing={2.5}>
+              <TextField
+                label={t.contact.name}
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                fullWidth
+                required
+                size="small"
+              />
 
-            <TextField
-              label="Email"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              fullWidth
-              required
-            />
+              <TextField
+                label={t.contact.email}
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                fullWidth
+                required
+                size="small"
+              />
 
-            <TextField
-              label="Mensaje"
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              multiline
-              rows={4}
-              fullWidth
-              required
-            />
+              <TextField
+                label={t.contact.message}
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                multiline
+                rows={4}
+                fullWidth
+                required
+                size="small"
+              />
 
-            <Button type="submit" variant="contained" disabled={loading}>
-              {loading ? "Enviando..." : "Enviar mensaje"}
-            </Button>
+              <Button type="submit" variant="contained" disabled={loading} fullWidth>
+                {loading ? t.contact.sending : t.contact.send}
+              </Button>
 
-            <Typography variant="body2" sx={{ opacity: 0.7 }}>
-              También puedes escribirme a:{" "}
-              <strong>jhosebro2108@email.com</strong>
-            </Typography>
-          </Stack>
-        </Box>
+              <Typography variant="body2" sx={{ opacity: 0.6, fontSize: "0.8rem" }}>
+                {t.contact.emailLine}{" "}
+                <strong>jhosebro2108@gmail.com</strong>
+              </Typography>
+            </Stack>
+          </Box>
+        </motion.div>
       </Stack>
       <Snackbar
         open={snackbar.open}
         autoHideDuration={4000}
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        sx={{
-          borderRadius: 2,
-          boxShadow: `0 0 15px ${theme.palette.primary.main}40`,
-        }}
       >
         <Alert
           onClose={handleCloseSnackbar}

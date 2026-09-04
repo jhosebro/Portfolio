@@ -1,5 +1,6 @@
 import { Box, Typography, Stack, Button, Grid, Card } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 type Props = {
   project: {
@@ -15,113 +16,123 @@ type Props = {
 
 const ProjectCard = ({ project }: Props) => {
   const theme = useTheme();
+  const { t } = useLanguage();
 
   return (
     <Card
       sx={(theme) => ({
-        p: { xs: 2, md: 4 },
-        borderRadius: 4,
-        transition: "all 0.3s ease",
+        p: { xs: 3, md: 4 },
+        borderRadius: 3,
         cursor: "pointer",
+        minHeight: 260,
 
         "&:hover": {
-          transform: "translateY(-6px)",
-          boxShadow: `0 10px 40px ${theme.palette.primary.main}25`,
-          borderColor: theme.palette.primary.main,
+          transform: "translateY(-4px)",
+          borderColor: alpha(theme.palette.primary.main, 0.3),
+        },
+
+        ".MuiCard-root:hover & .project-img": {
+          transform: "scale(1.04)",
         },
       })}
     >
-      <Grid container sx={{ spacing: 4, alignItems: "center" }}>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+      <Grid
+        container
+        spacing={{ xs: 3, md: 4 }}
+        sx={{ alignItems: "center", height: "100%" }}
+      >
+        {/* Icono / placeholder */}
+        <Grid size={{ xs: 12, sm: 4 }}>
+          <Box sx={{ display: "flex", justifyContent: { xs: "center", sm: "flex-start" } }}>
             <Box
-              component="img"
-              src={project.image}
-              alt={project.name}
+              className="project-img"
               sx={{
-                width: "100%",
-                maxWidth: 220,
+                width: 200,
+                height: 150,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 borderRadius: 3,
-                boxShadow: `0 0 30px ${theme.palette.primary.main}30`,
-                transition: "transform 0.4s ease",
-
-                ".MuiCard-root:hover &": {
-                  transform: "scale(1.05)",
-                },
+                background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.25)}, ${alpha(theme.palette.secondary.main, 0.15)})`,
+                border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
+                transition: "transform 0.4s cubic-bezier(0.4,0,0.2,1)",
               }}
-            />
+            >
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: 800,
+                  fontSize: "4rem",
+                  letterSpacing: "0.02em",
+                  WebkitTextFillColor: "transparent",
+                  background: `linear-gradient(135deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                  backgroundClip: "text",
+                }}
+              >
+                {project.name.slice(0, 2).toUpperCase()}
+              </Typography>
+            </Box>
           </Box>
         </Grid>
 
-        {/* 🔹 INFO */}
-        <Grid size={{ xs: 12, md: 6 }}>
+        {/* Contenido */}
+        <Grid size={{ xs: 12, sm: 8 }}>
           <Stack spacing={2}>
-            <Typography
-              variant="h5"
-              sx={{
-                textShadow: `0 0 20px ${theme.palette.primary.main}40`,
-                py: 2,
-              }}
-            >
+            <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>
               {project.name}
             </Typography>
 
-            <Typography variant="body2">{project.description}</Typography>
+            <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
+              {project.description}
+            </Typography>
 
-            {/* Impacto */}
             <Typography
               variant="body2"
-              sx={{
-                color: theme.palette.primary.main,
-                fontWeight: 500,
-              }}
+              sx={{ color: theme.palette.primary.main, fontWeight: 500, fontSize: "0.8rem" }}
             >
               {project.impact}
             </Typography>
 
-            {/* Tech */}
-            <Stack sx={{ direction: "row", spacing: 1, flexWrap: "wrap" }}>
-              {project.tech.map((t) => (
+            <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap", gap: 1, mt: 0.5 }}>
+              {project.tech.map((tech) => (
                 <Box
-                  key={t}
+                  key={tech}
                   sx={{
                     px: 1.5,
                     py: 0.4,
-                    mt: 1,
-                    borderRadius: "999px",
+                    borderRadius: "6px",
                     border: `1px solid ${theme.palette.divider}`,
-                    fontSize: 12,
+                    fontSize: "0.7rem",
+                    fontWeight: 500,
+                    color: theme.palette.text.secondary,
                   }}
                 >
-                  {t}
+                  {tech}
                 </Box>
               ))}
             </Stack>
 
-            {/* CTA */}
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={1.5} sx={{ mt: 0.5 }}>
               <Button
                 variant="outlined"
                 color="primary"
                 href={project.github}
                 target="_blank"
+                size="small"
+                sx={{ fontSize: "0.8rem", px: 2 }}
               >
-                GitHub
+                {t.projectsPage.github}
               </Button>
-
               {project.demo && (
                 <Button
                   variant="contained"
                   color="primary"
                   href={project.demo}
                   target="_blank"
+                  size="small"
+                  sx={{ fontSize: "0.8rem", px: 2 }}
                 >
-                  Ver demo
+                  {t.projectsPage.demo}
                 </Button>
               )}
             </Stack>
@@ -131,5 +142,13 @@ const ProjectCard = ({ project }: Props) => {
     </Card>
   );
 };
+
+function alpha(color: string, value: number) {
+  const hex = color.replace("#", "");
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  return `rgba(${r},${g},${b},${value})`;
+}
 
 export default ProjectCard;

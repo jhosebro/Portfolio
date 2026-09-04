@@ -19,22 +19,24 @@ import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 
 import logo from "../assets/logo.png";
-
-const links = [
-  { label: "Inicio", path: "/" },
-  { label: "Proyectos", path: "/projects" },
-  { label: "Sobre mí", path: "/about" },
-  { label: "Contacto", path: "/contact" },
-];
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Navbar = () => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (state: boolean) => () => {
     setOpen(state);
   };
+
+  const links = [
+    { label: t.nav.home, path: "/" },
+    { label: t.nav.projects, path: "/projects" },
+    { label: t.nav.skills, path: "/skills" },
+    { label: t.nav.contact, path: "/contact" },
+  ];
 
   return (
     <>
@@ -42,36 +44,38 @@ const Navbar = () => {
         position="sticky"
         elevation={0}
         sx={{
-          background: "rgba(10,13,18,0.7)",
-          backdropFilter: "blur(10px)",
+          background: alpha(theme.palette.background.default, 0.8),
+          backdropFilter: "blur(12px)",
           borderBottom: `1px solid ${theme.palette.divider}`,
         }}
       >
         <Toolbar
           sx={{
-            maxWidth: 1200,
+            maxWidth: 1100,
             width: "100%",
             mx: "auto",
             justifyContent: "space-between",
           }}
         >
-          {/* LOGO */}
           <Box
             component="img"
             src={logo}
             onClick={() => navigate("/")}
             sx={{
-              width: 42,
+              width: 38,
               cursor: "pointer",
-              filter: `drop-shadow(0 0 6px ${theme.palette.primary.main}60)`,
+              filter: `drop-shadow(0 0 4px ${theme.palette.primary.main}40)`,
+              transition: "filter 0.2s ease",
+              "&:hover": {
+                filter: `drop-shadow(0 0 8px ${theme.palette.primary.main}60)`,
+              },
             }}
           />
 
-          {/* DESKTOP */}
           <Stack
             direction="row"
             spacing={3}
-            sx={{ display: { xs: "none", md: "flex" } }}
+            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
           >
             {links.map((link) => (
               <NavLink
@@ -88,6 +92,8 @@ const Navbar = () => {
                         : theme.palette.text.secondary,
                       px: 1,
                       py: 0.5,
+                      fontSize: "0.875rem",
+                      fontWeight: 500,
                       transition: "all 0.2s ease",
 
                       "&:hover": {
@@ -96,8 +102,6 @@ const Navbar = () => {
                     }}
                   >
                     {link.label}
-
-                    {/* 🔥 Línea animada */}
                     <Box
                       sx={{
                         position: "absolute",
@@ -106,6 +110,7 @@ const Navbar = () => {
                         width: isActive ? "100%" : "0%",
                         height: 2,
                         background: theme.palette.primary.main,
+                        borderRadius: 1,
                         transition: "all 0.3s ease",
                       }}
                     />
@@ -113,16 +118,15 @@ const Navbar = () => {
                 )}
               </NavLink>
             ))}
+
           </Stack>
 
-          {/* CTA DESKTOP */}
           <Box sx={{ display: { xs: "none", md: "block" } }}>
-            <Button variant="contained" onClick={() => navigate("/contact")}>
-              Trabajemos juntos
+            <Button variant="contained" size="small" onClick={() => navigate("/contact")}>
+              {t.nav.cta}
             </Button>
           </Box>
 
-          {/* MOBILE BUTTON */}
           <IconButton
             onClick={toggleDrawer(true)}
             sx={{
@@ -135,15 +139,12 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
 
-      {/* DRAWER CORRECTO SEGÚN DOC */}
       <Drawer
-        variant="temporary" // 🔥 IMPORTANTE
+        variant="temporary"
         anchor="right"
         open={open}
         onClose={toggleDrawer(false)}
-        ModalProps={{
-          keepMounted: true, // 🔥 performance mobile
-        }}
+        ModalProps={{ keepMounted: true }}
         slotProps={{
           paper: {
             sx: {
@@ -155,27 +156,25 @@ const Navbar = () => {
         }}
       >
         <Box sx={{ p: 2 }}>
-          {/* CLOSE */}
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <IconButton onClick={toggleDrawer(false)}>
               <CloseIcon />
             </IconButton>
           </Box>
 
-          {/* LINKS */}
           <List>
             {links.map((link) => (
               <ListItemButton
                 key={link.path}
                 onClick={() => {
                   navigate(link.path);
-                  setOpen(false); // 🔥 cierre correcto
+                  setOpen(false);
                 }}
                 sx={{
                   borderRadius: 2,
                   mb: 1,
                   "&:hover": {
-                    background: "rgba(0,255,156,0.08)",
+                    backgroundColor: alpha(theme.palette.primary.main, 0.06),
                   },
                 }}
               >
@@ -184,7 +183,6 @@ const Navbar = () => {
             ))}
           </List>
 
-          {/* CTA */}
           <Button
             fullWidth
             variant="contained"
@@ -194,12 +192,20 @@ const Navbar = () => {
               setOpen(false);
             }}
           >
-            Trabajemos juntos
+            {t.nav.cta}
           </Button>
         </Box>
       </Drawer>
     </>
   );
 };
+
+function alpha(color: string, value: number) {
+  const hex = color.replace("#", "");
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  return `rgba(${r},${g},${b},${value})`;
+}
 
 export default Navbar;

@@ -1,0 +1,28 @@
+export type Certification = {
+  name: string;
+  issuer: string;
+  category: string;
+  date: string;
+  badgeImage: string;
+  credentialUrl: string;
+};
+
+export const certifications: Certification[] = [
+  {"name":"Create Your First Gemini Enterprise Application","issuer":"Google Cloud","category":"Google Cloud","date":"2026-07","badgeImage":"https://images.credly.com/images/3c923d13-42da-4765-995d-59f3030e042a/blob","credentialUrl":"https://www.credly.com/badges/b14c3af1-5e88-490b-af59-929b7d0126c2"},
+  {"name":"Implement Cloud Security Fundamentals on Google Cloud Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2026-07","badgeImage":"https://images.credly.com/images/f1dbea96-0ef4-4857-bb85-3d208a82de10/image.png","credentialUrl":"https://www.credly.com/badges/584bd8e5-a89e-4771-9ba0-b0cfdfaadcfd"},
+  {"name":"Build a Secure Google Cloud Network Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2026-07","badgeImage":"https://images.credly.com/images/e1131ae3-4a52-4af1-9801-b7853767cf79/image.png","credentialUrl":"https://www.credly.com/badges/2a73e0cf-a4c2-4bef-9e8e-ed3c4fed053d"},
+  {"name":"AWS Agentic AI Demonstrated","issuer":"Amazon Web Services Training and Certification","category":"Amazon Web Services Training and Certification","date":"2026-05","badgeImage":"https://images.credly.com/images/6f40bf38-1725-40d8-99a2-f6bb1bafec0e/blob","credentialUrl":"https://www.credly.com/badges/7469ee19-2f8c-4603-aac5-d04b50f09542"},
+  {"name":"Cloud Architecture: Design, Implement, and Manage Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2025-12","badgeImage":"https://images.credly.com/images/746b172c-bdae-4bd9-b29b-eecfc9ad3577/image.png","credentialUrl":"https://www.credly.com/badges/3b4b8c20-cbe3-49a9-9b9b-4b7ab695e1d6"},
+  {"name":"Develop Your Google Cloud Network Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2025-12","badgeImage":"https://images.credly.com/images/b126c61c-4781-4f03-9b2b-062963003abf/image.png","credentialUrl":"https://www.credly.com/badges/8b4069de-3054-430c-b66c-0747501bbce0"},
+  {"name":"Set Up a Google Cloud Network Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2025-12","badgeImage":"https://images.credly.com/images/189c5c31-67c6-4eae-87dc-3b8185a99043/image.png","credentialUrl":"https://www.credly.com/badges/e4a93723-d50b-461b-8d95-ecebacf1ba93"},
+  {"name":"Build Infrastructure with Terraform on Google Cloud Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2025-12","badgeImage":"https://images.credly.com/images/b18154fb-9bd3-47e5-a6f1-554be512947d/image.png","credentialUrl":"https://www.credly.com/badges/6add2733-26a3-4437-bf74-4f5b9f1bdf53"},
+  {"name":"Optimize Costs for Google Kubernetes Engine Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2025-12","badgeImage":"https://images.credly.com/images/258d3147-f075-4308-bdb0-fb8d5e1d4d0e/image.png","credentialUrl":"https://www.credly.com/badges/404358ec-19d6-470d-a796-48ac168632f2"},
+  {"name":"Set Up an App Dev Environment on Google Cloud Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2025-12","badgeImage":"https://images.credly.com/images/42326d44-14ff-4eda-b9c5-7d8f12919253/image.png","credentialUrl":"https://www.credly.com/badges/7959d48c-69b7-4e80-b7e2-ff7a9953b479"},
+  {"name":"Implement Load Balancing on Compute Engine Skill Badge","issuer":"Google Cloud","category":"Google Cloud","date":"2025-11","badgeImage":"https://images.credly.com/images/eea11cba-2a98-4bbe-bad2-447878dd34a2/image.png","credentialUrl":"https://www.credly.com/badges/4000431b-33cb-4a5c-bfd3-49d0f35c3886"},
+  {"name":"AWS Educate Machine Learning Foundations - Training Badge","issuer":"Amazon Web Services Training and Certification","category":"Amazon Web Services Training and Certification","date":"2025-06","badgeImage":"https://images.credly.com/images/247efe36-9fa6-4209-ad56-0fd522283872/blob","credentialUrl":"https://www.credly.com/badges/f6d93d42-1be4-4564-8ff5-bac4e6977020"},
+  {"name":"Job Application Essentials","issuer":"IBM SkillsBuild","category":"IBM SkillsBuild","date":"2022-07","badgeImage":"https://images.credly.com/images/7ae738cc-d7af-45fd-ad53-3e21666cdeca/Job_Application_Essentials.png","credentialUrl":"https://www.credly.com/badges/78434527-e6c5-4557-b826-7eaabfa1acd7"},
+  {"name":"Entrepreneurship Marketing Essentials","issuer":"IBM SkillsBuild","category":"IBM SkillsBuild","date":"2022-06","badgeImage":"https://images.credly.com/images/cdb54868-2b79-4f35-8051-ba46f835099f/Entrepreneurship_Marketing_Essentials_.png","credentialUrl":"https://www.credly.com/badges/7c5be568-aabc-413e-94ec-25a7191a836c"},
+  {"name":"Entrepreneurship Business Essentials","issuer":"IBM SkillsBuild","category":"IBM SkillsBuild","date":"2022-06","badgeImage":"https://images.credly.com/images/174828d0-cd4f-4ae8-8692-7b4437f4cf87/Entrepreneurship_Business_Essentials_.png","credentialUrl":"https://www.credly.com/badges/7ffbc980-16a3-4bc7-9ca3-4a1ce82233ff"},
+  {"name":"Working in a Digital World: Professional Skills","issuer":"IBM SkillsBuild","category":"IBM SkillsBuild","date":"2022-06","badgeImage":"https://images.credly.com/images/4f76c627-c180-49ae-a5a0-742885eef581/Working_in_a_Digital_World-_Professional_Skills.png","credentialUrl":"https://www.credly.com/badges/7f026b9b-65f3-406f-a7ae-63ea02af5121"},
+  {"name":"Explore Emerging Tech","issuer":"IBM SkillsBuild","category":"IBM SkillsBuild","date":"2022-05","badgeImage":"https://images.credly.com/images/c6f4a830-11d9-46ba-a061-8ac2e5a099e9/Explore_Emerging_Tech.png","credentialUrl":"https://www.credly.com/badges/4e766b78-e460-4429-9e76-4411db75343e"},
+];

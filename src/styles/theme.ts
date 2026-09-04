@@ -1,6 +1,7 @@
 import { createTheme, alpha } from "@mui/material/styles";
 
 const PRIMARY = "#00FF9C";
+const ACCENT = "#00E5FF";
 
 export const theme = createTheme({
   palette: {
@@ -13,50 +14,64 @@ export const theme = createTheme({
     },
 
     secondary: {
-      main: "#00E5FF", // acento frío para contraste
+      main: ACCENT,
     },
 
     background: {
-      default: "#040507",
-      paper: "#0A0D12",
+      default: "#06080C",
+      paper: "#0C1018",
     },
 
     text: {
-      primary: "#E6FFF4",
+      primary: "#E8FFF2",
       secondary: "#8CFBD0",
     },
 
-    divider: alpha(PRIMARY, 0.12),
+    divider: alpha(PRIMARY, 0.1),
   },
 
   typography: {
-    fontFamily: `"Orbitron", "Inter", sans-serif`,
+    fontFamily: `"Inter", "Poppins", system-ui, sans-serif`,
 
     h3: {
       fontWeight: 700,
-      letterSpacing: "0.04em",
-      textTransform: "uppercase",
-      lineHeight: 1.1,
+      letterSpacing: "-0.02em",
+      lineHeight: 1.15,
+    },
+
+    h4: {
+      fontWeight: 700,
+      letterSpacing: "-0.01em",
+      lineHeight: 1.2,
     },
 
     h5: {
-      fontWeight: 500,
-      letterSpacing: "0.06em",
+      fontWeight: 600,
+      letterSpacing: "0.01em",
+    },
+
+    h6: {
+      fontWeight: 600,
     },
 
     body1: {
-      lineHeight: 1.7,
-      color: "#A6FBD8",
+      lineHeight: 1.75,
+      color: "#B0F0D4",
+    },
+
+    body2: {
+      lineHeight: 1.6,
+      color: "#8CFBD0",
     },
 
     button: {
       fontWeight: 600,
-      letterSpacing: "0.04em",
+      letterSpacing: "0.02em",
     },
   },
 
   shape: {
-    borderRadius: 16,
+    borderRadius: 12,
   },
 
   spacing: 8,
@@ -65,14 +80,32 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: "#040507",
+          backgroundColor: "#06080C",
           backgroundImage: `
-    radial-gradient(circle at 20% 20%, rgba(0,255,156,0.06), transparent 40%),
-    radial-gradient(circle at 80% 0%, rgba(0,255,156,0.04), transparent 40%)
-  `,
+            radial-gradient(circle at 15% 10%, rgba(0,255,156,0.04), transparent 35%),
+            radial-gradient(circle at 85% 5%, rgba(0,229,255,0.03), transparent 35%)
+          `,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          minHeight: "100vh"
+          minHeight: "100vh",
+          scrollBehavior: "smooth",
+        },
+        "::-webkit-scrollbar": {
+          width: 5,
+        },
+        "::-webkit-scrollbar-track": {
+          background: "transparent",
+        },
+        "::-webkit-scrollbar-thumb": {
+          background: "#1A2030",
+          borderRadius: 999,
+        },
+        "::-webkit-scrollbar-thumb:hover": {
+          background: "#253040",
+        },
+        "*::selection": {
+          backgroundColor: alpha(PRIMARY, 0.2),
+          color: "#fff",
         },
       },
     },
@@ -80,9 +113,11 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 999,
+          borderRadius: 10,
           textTransform: "none",
-          transition: "all 0.25s ease",
+          fontWeight: 600,
+          transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+          padding: "10px 24px",
         },
       },
 
@@ -90,25 +125,26 @@ export const theme = createTheme({
         {
           props: { variant: "contained", color: "primary" },
           style: {
-            background: `linear-gradient(90deg, ${PRIMARY}, #00C97A)`,
-            boxShadow: `0 0 20px ${alpha(PRIMARY, 0.35)}`,
+            background: `linear-gradient(135deg, ${PRIMARY}, #00C97A)`,
+            boxShadow: `0 0 20px ${alpha(PRIMARY, 0.25)}`,
+            color: "#040507",
 
             "&:hover": {
-              boxShadow: `0 0 30px ${alpha(PRIMARY, 0.6)}`,
-              transform: "translateY(-2px)",
+              boxShadow: `0 0 30px ${alpha(PRIMARY, 0.5)}`,
+              transform: "translateY(-1px)",
             },
           },
         },
         {
           props: { variant: "outlined", color: "primary" },
           style: {
-            borderColor: alpha(PRIMARY, 0.5),
+            borderColor: alpha(PRIMARY, 0.35),
             color: PRIMARY,
 
             "&:hover": {
               borderColor: PRIMARY,
-              backgroundColor: alpha(PRIMARY, 0.08),
-              boxShadow: `0 0 12px ${alpha(PRIMARY, 0.4)}`,
+              backgroundColor: alpha(PRIMARY, 0.06),
+              boxShadow: `0 0 12px ${alpha(PRIMARY, 0.25)}`,
             },
           },
         },
@@ -119,9 +155,8 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: "none",
-          backgroundColor: "#0A0D12",
-          border: `1px solid ${alpha(PRIMARY, 0.08)}`,
-          backdropFilter: "blur(10px)",
+          backgroundColor: "#0C1018",
+          border: `1px solid ${alpha(PRIMARY, 0.06)}`,
         },
       },
     },
@@ -130,10 +165,43 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           border: `1px solid ${alpha(PRIMARY, 0.08)}`,
+          backgroundColor: alpha("#0C1018", 0.6),
+          backdropFilter: "blur(12px)",
           boxShadow: "none",
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
 
           "&:hover": {
-            boxShadow: `0 0 25px ${alpha(PRIMARY, 0.15)}`,
+            borderColor: alpha(PRIMARY, 0.25),
+            boxShadow: `0 0 24px ${alpha(PRIMARY, 0.1)}, 0 8px 32px rgba(0,0,0,0.3)`,
+          },
+        },
+      },
+    },
+
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderColor: alpha(PRIMARY, 0.12),
+          backgroundColor: alpha(PRIMARY, 0.04),
+          fontWeight: 500,
+          fontSize: "0.75rem",
+        },
+      },
+    },
+
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: alpha(PRIMARY, 0.15),
+            },
+            "&:hover fieldset": {
+              borderColor: alpha(PRIMARY, 0.3),
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: PRIMARY,
+            },
           },
         },
       },
