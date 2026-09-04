@@ -33,7 +33,7 @@ export const projects = [
     tech: ["React Native", "Expo", "Supabase", "Zustand"],
     image: "",
     github: "https://github.com/jhosebro/MealPrep",
-    demo: "",
+    demo: "https://mealprepweb.netlify.app/",
   },
   {
     id: "planify",
@@ -44,6 +44,6 @@ export const projects = [
     tech: ["React Native", "Expo", "Supabase", "SQLite", "Zustand"],
     image: "",
     github: "https://github.com/jhosebro/Planify",
-    demo: "",
+    demo: "https://planifymobile.netlify.app/",
   },
 ];
